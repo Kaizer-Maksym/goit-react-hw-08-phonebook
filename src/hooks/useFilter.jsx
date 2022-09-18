@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { getFiltr } from 'redux/contacts/contactsSlice';
-import { useFetchContactsQuery } from 'redux/contacts/contactsSlice';
+import { getFiltr } from 'redux/contacts/contacts-slice';
+import { useFetchContactsQuery } from 'redux/contacts/contacts-slice';
 
 export function useFilter() {
   const { data } = useFetchContactsQuery();

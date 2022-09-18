@@ -1,5 +1,5 @@
 import { useSubmit } from 'hooks/useSubmit';
-import { useCreateContactMutation } from 'redux/contacts/contactsSlice';
+import { useCreateContactMutation } from 'redux/contacts/contacts-slice';
 
 import {
   FormBtn,

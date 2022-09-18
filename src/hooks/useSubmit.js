@@ -1,7 +1,7 @@
 import {
   useCreateContactMutation,
   useFetchContactsQuery,
-} from 'redux/contacts/contactsSlice';
+} from 'redux/contacts/contacts-slice';
 
 export function useSubmit(e) {
   const { data } = useFetchContactsQuery();

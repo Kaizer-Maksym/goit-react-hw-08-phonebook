@@ -39,7 +39,7 @@ export const {
   useDeleteContactMutation,
 } = contactApi;
 
-export const contactsSlice = createSlice({
+const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
     filter: '',
@@ -52,6 +52,7 @@ export const contactsSlice = createSlice({
 });
 
 export const { filterOut } = contactsSlice.actions;
+export default contactsSlice.reducer;
 
 //---------Selectors
 export const getFiltr = state => state.contacts.filter;

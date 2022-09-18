@@ -1,22 +1,18 @@
-import { ContactsList } from '../ContactList/ContactList';
-import { ContactFilter } from '../ContactFilter/ContactFilter';
-import { ContactsForm } from '../ContactForm/ContactForm';
+import { Routes, Route } from 'react-router-dom';
 
-import { AppContainer, ToAddContact, List, Heading } from './App.stayled';
+import Contacts from '../../pages/Contacts/Contacts';
+import Layout from '../Layout/Layout';
+import Login from 'pages/Login/Login';
+import Register from 'pages/Register/Register';
 
 export const App = () => {
   return (
-    <AppContainer>
-      <ToAddContact>
-        <Heading>Phonebook</Heading>
-        <ContactsForm />
-      </ToAddContact>
-
-      <List>
-        <Heading>Contacts</Heading>
-        <ContactFilter />
-        <ContactsList />
-      </List>
-    </AppContainer>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="Login" element={<Login />} />
+        <Route path="Register" element={<Register />} />
+        <Route path="Contacts" element={<Contacts />} />
+      </Route>
+    </Routes>
   );
 };

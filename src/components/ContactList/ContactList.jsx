@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFilter } from 'hooks/useFilter';
-import { useDeleteContactMutation } from 'redux/contacts/contactsSlice';
+import { useDeleteContactMutation } from 'redux/contacts/contacts-slice';
 
 import {
   ContactItem,

@@ -4,7 +4,7 @@ import {
   FilterInput,
   FilterContainer,
 } from './ContactFilter.styled';
-import { filterOut } from 'redux/contacts/contactsSlice';
+import { filterOut } from 'redux/contacts/contacts-slice';
 
 export const ContactFilter = () => {
   const dispatch = useDispatch();
