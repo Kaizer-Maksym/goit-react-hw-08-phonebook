@@ -1,33 +1,20 @@
-import {
-  useCreateContactMutation,
-  useFetchContactsQuery,
-} from 'redux/contacts/contacts-slice';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../redux/contacts/contacts-operations';
 
 export function useSubmit(e) {
-  const { data } = useFetchContactsQuery();
-  const [createContact] = useCreateContactMutation();
+  const dispatch = useDispatch();
 
   const onSubmit = e => {
     e.preventDefault();
     const name = e.target.name.value;
     const number = e.target.number.value;
 
-    const isInclude = data
-      .map(({ name }) => name)
-      .some(
-        name => name.toLowerCase() === e.target.name.value.toLowerCase().trim()
-      );
+    const data = {
+      name: name,
+      number: number,
+    };
+    dispatch(addContact(data));
 
-    if (isInclude) {
-      alert(`${name} is already in contacts`);
-      return;
-    } else {
-      const newContact = {
-        name: name,
-        phone: number,
-      };
-      createContact(newContact);
-    }
     e.target.reset();
   };
 

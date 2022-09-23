@@ -1,46 +1,59 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-export const contactApi = createApi({
-  reducerPath: 'contactsApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://6310cec1826b98071a4b4670.mockapi.io/',
-  }),
-  tagTypes: ['Contact'],
-  endpoints: builder => ({
-    fetchContacts: builder.query({
-      query: () => '/contacts',
-      providesTags: result =>
-        result
-          ? [...result.map(({ id }) => ({ type: 'Contact', id })), 'Contact']
-          : ['Contact'],
-    }),
-    createContact: builder.mutation({
-      query: newContact => ({
-        url: '/contacts',
-        method: 'POST',
-        body: newContact,
-      }),
-      invalidatesTags: ['Contact'],
-    }),
-    deleteContact: builder.mutation({
-      query: contactId => ({
-        url: `/contacts/${contactId}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['Contact'],
-    }),
-  }),
-});
-
-export const {
-  useFetchContactsQuery,
-  useCreateContactMutation,
-  useDeleteContactMutation,
-} = contactApi;
+import {
+  fetchContacts,
+  addContact,
+  removeContact,
+} from './contacts-operations';
 
 const contactsSlice = createSlice({
   name: 'contacts',
+  initialState: {
+    items: [],
+    loading: false,
+    error: null,
+  },
+  extraReducers: {
+    [fetchContacts.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [fetchContacts.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.items = payload;
+    },
+    [fetchContacts.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+    [addContact.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [addContact.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.items.push(payload);
+    },
+    [addContact.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+    [removeContact.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [removeContact.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.items = store.items.filter(item => item.id !== payload);
+    },
+    [removeContact.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+  },
+});
+
+const filterSlice = createSlice({
+  name: 'filter',
   initialState: {
     filter: '',
   },
@@ -51,8 +64,10 @@ const contactsSlice = createSlice({
   },
 });
 
-export const { filterOut } = contactsSlice.actions;
-export default contactsSlice.reducer;
+export const { filterOut } = filterSlice.actions;
 
-//---------Selectors
-export const getFiltr = state => state.contacts.filter;
+const reducers = {
+  contactsReducer: contactsSlice.reducer,
+  filterReducer: filterSlice.reducer,
+};
+export default reducers;

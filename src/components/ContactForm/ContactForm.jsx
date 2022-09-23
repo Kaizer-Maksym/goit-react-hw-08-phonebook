@@ -1,17 +1,13 @@
-import { useSubmit } from 'hooks/useSubmit';
-import { useCreateContactMutation } from 'redux/contacts/contacts-slice';
-
 import {
   FormBtn,
   FormText,
   FormStyle,
   InputContact,
 } from './ContactForm.styled';
+import { useSubmit } from 'hooks/useSubmit';
 
 export const ContactsForm = () => {
   const onSubmit = useSubmit();
-  const [result] = useCreateContactMutation();
-
   return (
     <FormStyle autoCapitalize="off" onSubmit={onSubmit}>
       <FormText>Name</FormText>
@@ -36,9 +32,7 @@ export const ContactsForm = () => {
         />
       </label>
 
-      <FormBtn type="submit" disabled={result.isLoading}>
-        Add contact
-      </FormBtn>
+      <FormBtn type="submit">Add contact</FormBtn>
     </FormStyle>
   );
 };

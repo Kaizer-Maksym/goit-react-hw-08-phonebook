@@ -1,6 +1,10 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useFilter } from 'hooks/useFilter';
-import { useDeleteContactMutation } from 'redux/contacts/contacts-slice';
+import {
+  fetchContacts,
+  removeContact,
+} from 'redux/contacts/contacts-operations';
 
 import {
   ContactItem,
@@ -12,8 +16,16 @@ import {
 import { BsTelephoneFill } from 'react-icons/bs';
 
 export const ContactsList = () => {
-  const [deleteContact, result] = useDeleteContactMutation();
+  const dispatch = useDispatch();
   const visibleContacts = useFilter();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
+  const onRemoveContact = payload => {
+    dispatch(removeContact(payload));
+  };
 
   return (
     <ListOfContacts>
@@ -25,12 +37,7 @@ export const ContactsList = () => {
               <span>{name} :</span>
               <span>{phone}</span>
             </ContactInfo>
-            <BtnOnDelet
-              onClick={() => deleteContact(id)}
-              disabled={result.isLoading}
-            >
-              Delete
-            </BtnOnDelet>
+            <BtnOnDelet onClick={() => onRemoveContact(id)}>Delete</BtnOnDelet>
           </ContactItem>
         ))}
     </ListOfContacts>

@@ -1,15 +1,14 @@
 import { useSelector } from 'react-redux';
-import { getFiltr } from 'redux/contacts/contacts-slice';
-import { useFetchContactsQuery } from 'redux/contacts/contacts-slice';
+import { getFiltr, getContacts } from '../redux/contacts/contacts-selectors';
 
 export function useFilter() {
-  const { data } = useFetchContactsQuery();
-  const filter = useSelector(getFiltr);
+  const contacts = useSelector(getContacts);
+  const { filter } = useSelector(getFiltr);
 
-  if (data) {
+  if (contacts) {
     const getVisibleContact = () => {
       const normalize = filter.toLowerCase();
-      return data.filter(contact =>
+      return contacts.filter(contact =>
         contact.name.toLowerCase().includes(normalize)
       );
     };
