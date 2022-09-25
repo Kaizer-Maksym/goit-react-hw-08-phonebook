@@ -30,12 +30,12 @@ export const ContactsList = () => {
   return (
     <ListOfContacts>
       {visibleContacts &&
-        visibleContacts.map(({ name, phone, id }) => (
+        visibleContacts.map(({ name, number, id }) => (
           <ContactItem key={id}>
+            {<BsTelephoneFill size="15px" color="#00000091" />}
             <ContactInfo>
-              <BsTelephoneFill size="15px" color="#00000091" />
-              <span>{name} :</span>
-              <span>{phone}</span>
+              <span>{name} </span>
+              <span>{number}</span>
             </ContactInfo>
             <BtnOnDelet onClick={() => onRemoveContact(id)}>Delete</BtnOnDelet>
           </ContactItem>

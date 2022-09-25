@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+export const RegContainer = styled.div`
+  position: absolute;
+  top: 30%;
+  left: 10%;
+`;
+
 export const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
@@ -18,12 +24,20 @@ export const FormBtn = styled.button`
   border: none;
   outline: none;
   box-shadow: 3px 2px 1px rgba(117, 118, 118, 0.662);
-  background-color: #559adadd;
+  background-color: #2193f6;
 
   font-size: 16px;
   font-weight: 500;
 
   color: #fdfcfc;
+
+  transition: 250ms linear;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover,
+  :focus {
+    background-color: rgb(255, 107, 8);
+  }
 `;
 
 export const InputContact = styled.input`

@@ -7,17 +7,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-#root {
-  margin-right: auto;
-  margin-left: auto;
-  background-color: rgba(230, 230, 230, 0.919);
 }
 
 p {

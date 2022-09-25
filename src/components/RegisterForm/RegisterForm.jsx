@@ -1,12 +1,16 @@
+import { useSelector } from 'react-redux';
+import { getAuthError } from 'redux/auth/auth-selectors';
 import {
   FormBtn,
   FormText,
   FormStyle,
   InputContact,
+  RegContainer,
 } from './RegisterForm.styled';
 import PropTypes from 'prop-types';
 
 const RegisterForm = ({ onSubmit }) => {
+  const { status, message } = useSelector(getAuthError);
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -20,29 +24,34 @@ const RegisterForm = ({ onSubmit }) => {
   };
 
   return (
-    <FormStyle autoCapitalize="off" onSubmit={handleSubmit}>
-      <FormText>Name</FormText>
-      <label>
-        <InputContact
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-      </label>
-      <FormText>Email</FormText>
-      <label>
-        <InputContact type="email" name="email" required />
-      </label>
+    <RegContainer>
+      <h1>Registration</h1>
 
-      <FormText>Password</FormText>
-      <label>
-        <InputContact type="password" name="password" />
-      </label>
+      <FormStyle autoCapitalize="off" onSubmit={handleSubmit}>
+        <FormText>Name</FormText>
+        <label>
+          <InputContact
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+        </label>
+        <FormText>Email</FormText>
+        <label>
+          <InputContact type="email" name="email" required />
+        </label>
 
-      <FormBtn type="submit">Registration</FormBtn>
-    </FormStyle>
+        <FormText>Password</FormText>
+        <label>
+          <InputContact type="password" name="password" />
+        </label>
+
+        <FormBtn type="submit">Registration</FormBtn>
+      </FormStyle>
+      {status && <p style={{ color: 'red' }}>{message}</p>}
+    </RegContainer>
   );
 };
 

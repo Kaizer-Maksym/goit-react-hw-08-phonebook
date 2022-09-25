@@ -3,25 +3,32 @@ import styled from '@emotion/styled';
 export const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
-
-  padding: 20px;
 `;
 
 export const FormBtn = styled.button`
   display: block;
-  width: 200px;
+  width: 100%;
   height: 40px;
 
   border-radius: 5px;
   border: none;
   outline: none;
-  box-shadow: 3px 2px 1px rgba(117, 118, 118, 0.662);
-  background-color: #559adadd;
+  background-color: rgba(13, 92, 92, 0.66);
+  box-shadow: 3px 3px 2px rgba(34, 35, 35, 0.66);
 
   font-size: 16px;
   font-weight: 500;
 
+  cursor: pointer;
+
   color: #fdfcfc;
+  transition: 250ms linear;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover,
+  :focus {
+    background-color: rgb(255, 107, 8);
+  }
 `;
 
 export const InputContact = styled.input`

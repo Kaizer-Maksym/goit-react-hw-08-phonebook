@@ -1,21 +1,22 @@
+import { useState } from 'react';
 import { ContactsList } from '../../components/ContactList/ContactList';
 import { ContactFilter } from '../../components/ContactFilter/ContactFilter';
-import { ContactsForm } from '../../components/ContactForm/ContactForm';
-import { AppContainer, ToAddContact, List, Heading } from './Contacts.styled';
+import CreateContact from '../../components/CreateContact/CreateContact';
+import Modal from 'components/Modal/Modal';
+
+import { AppContainer, List } from './Contacts.styled';
 
 const Contacts = () => {
+  const [modalActive, setModalActive] = useState(false);
+
   return (
     <AppContainer>
-      <ToAddContact>
-        <Heading>Phonebook</Heading>
-        <ContactsForm />
-      </ToAddContact>
-
       <List>
-        <Heading>Contacts</Heading>
+        <CreateContact setActive={setModalActive} />
         <ContactFilter />
         <ContactsList />
       </List>
+      <Modal active={modalActive} setActive={setModalActive} />
     </AppContainer>
   );
 };

@@ -11,11 +11,12 @@ export const Link = styled(NavLink)`
   padding-bottom: 5px;
   transition: 250ms linear;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
   :not(:last-child) {
     margin-right: 15px;
   }
   &.active {
-    color: #2193f6;
+    color: rgb(33, 147, 246);
   }
   &:hover:not(.active) {
     color: #2193f6;
@@ -24,6 +25,10 @@ export const Link = styled(NavLink)`
 
 export const NavContainer = styled.nav`
   display: flex;
+
+  margin-left: auto;
+  margin-right: auto;
+
   align-items: center;
   justify-content: space-between;
 `;

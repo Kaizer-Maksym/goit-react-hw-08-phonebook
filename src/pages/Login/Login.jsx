@@ -1,13 +1,16 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { getAuthError } from 'redux/auth/auth-selectors';
+import { useDispatch } from 'react-redux';
+
 import { Navigate } from 'react-router-dom';
 import { entry } from 'redux/auth/auth-operations';
+
+import { LoginBackground } from './Login.styled';
 import LoginForm from 'components/LoginForm/LoginForm';
 import useAuth from 'hooks/useAuth';
+import logFone from '../../images/log-fone.jpg';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { status, message } = useSelector(getAuthError);
+
   const isLogin = useAuth();
 
   const onLogin = data => {
@@ -18,11 +21,10 @@ const Login = () => {
     return <Navigate to="/Contacts" />;
   }
   return (
-    <>
-      <h1>Login page</h1>;
+    <div>
+      <LoginBackground src={logFone} alt="background fone" />
       <LoginForm onSubmit={onLogin} />
-      {status && <p style={{ color: 'red' }}>{message}</p>}
-    </>
+    </div>
   );
 };
 

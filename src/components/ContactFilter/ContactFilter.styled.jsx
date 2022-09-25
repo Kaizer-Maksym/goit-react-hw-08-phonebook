@@ -12,7 +12,7 @@ export const FilterText = styled.label`
 `;
 
 export const FilterInput = styled.input`
-  width: 480px;
+  width: 400px;
   height: 30px;
   padding: 5px 10px;
 
@@ -29,5 +29,6 @@ export const FilterInput = styled.input`
 `;
 
 export const FilterContainer = styled.div`
-  position: relative;
+  display: flex;
+  justify-content: center;
 `;
